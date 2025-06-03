@@ -41,7 +41,7 @@ const Order = sequelize.define('Order', {
     const products = [
       { name: 'T-Shirt', price: 5000, description: 'Cotton t-shirt', image: 'https://cdn.pixabay.com/photo/2017/05/23/10/53/t-shirt-design-2336850_1280.jpg', category: 'Clothing' },
       { name: 'Jeans', price: 8000, description: 'Slim-fit jeans', image: 'https://cdn.pixabay.com/photo/2015/03/16/15/24/pants-676119_1280.jpg', category: 'Clothing' },
-      { name: 'Jacket', price: 12000, description: 'Leather jacket', image: 'https://source.unsplash.com/random/300x200/?jacket', category: 'Clothing' },
+      { name: 'Jacket', price: 12000, description: 'Leather jacket', image: 'https://cdn.pixabay.com/photo/2017/10/29/13/17/jacket-2899729_960_720.png', category: 'Clothing' },
     ];
     await Product.bulkCreate(products, { ignoreDuplicates: true });
     console.log('Database synced and seeded');
