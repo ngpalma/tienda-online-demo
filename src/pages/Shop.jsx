@@ -1,16 +1,11 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useContext } from 'react';
 import { Helmet } from 'react-helmet-async';
-import axios from 'axios';
 import { CartContext } from '../context/CartContext';
+import products from '../data/products';
 
 function Shop() {
   const { addToCart } = useContext(CartContext);
-  const [products, setProducts] = useState([]);
   const [search, setSearch] = useState('');
-
-  useEffect(() => {
-    axios.get('http://localhost:5000/products').then(res => setProducts(res.data)).catch(() => alert('Error fetching products'));
-  }, []);
 
   const filteredProducts = products.filter(p => p.name.toLowerCase().includes(search.toLowerCase()));
 

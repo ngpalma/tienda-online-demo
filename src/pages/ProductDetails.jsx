@@ -1,23 +1,15 @@
-import { useState, useEffect } from 'react';
 import {Helmet} from 'react-helmet-async';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
 import { CartContext } from '../context/CartContext';
-
+import { useContext } from 'react';
+import products from '../data/products';
 
 function ProductDetails() {
     const { addToCart } = useContext(CartContext);
 
   const { id } = useParams();
-  const [product, setProduct] = useState(null);
-
-  useEffect(() => {
-    axios.get(`http://localhost:5000/products/${id}`)
-      .then(res => setProduct(res.data))
-      .catch(() => alert('Error fetching product'));
-  }, [id]);
-
-  if (!product) return <div>Loading...</div>;
+  const product = products.find(p => p.id === parseInt(id));
+  if (!product) return <div>Product not found</div>;
 
   return (
     <div className="min-h-screen bg-gray-100 p-10">

@@ -1,9 +1,7 @@
 import { useState, useContext } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import { CartContext } from '../context/CartContext';
-
 
 function Checkout() {
     const { cart, clearCart } = useContext(CartContext);
@@ -17,15 +15,12 @@ function Checkout() {
     e.preventDefault();
     setIsSubmitting(true);
     try {
-      await axios.post('http://localhost:5000/orders', {
-        ...formData,
-        items: cart,
-        total,
-      }, { timeout: 3000 });
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      console.log('Order placed:', { ...formData, items: cart, total });
       clearCart();
       navigate('/success');
     } catch (error) {
-      alert(`Error processing order: ${error.message}`);
+      alert('Error processing order');
     } finally {
       setIsSubmitting(false);
     }
